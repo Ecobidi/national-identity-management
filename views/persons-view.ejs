@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/app.css" type="text/css" />
+  <title><%= appname %></title>
+  <style>
+    body {
+      background-image: url(/images/coat.png);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+
+    #wrap {
+      background-color: #ffffffe8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <section class="col-8 offset-2" id="wrap">
+        <nav class="navbar navbar-expand-sm py-0 d-flex justify-content-between align-items-center" style="border-left: 1px solid #fff;">
+          <a class="navbar-brand" href="#">
+            <img class="img img-responsive" src="/images/coat.png" style="height: 72px; width: 72px; border-radius: 50%;">
+          </a>
+          <div class="text-center">
+            <h4 class="font-weight-normal app-title">National Identity Management System</h4>
+            <h6>National Identification Number Slip (NINS)</h6>
+          </div>
+          <a class="navbar-brand" href="#">
+            <img class="img img-responsive" src="/images/logo.jpg" style="height: 72px; width: 72px; border-radius: 50%;">
+          </a>
+        </nav>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td scope="row"><strong>Tracking ID:</strong> <%= person._id %></td>
+
+              <td scope="row"><strong>Surname:</strong> <%= person.surname %></td>
+
+              <td scope="col" rowspan="4"><strong>Address:</strong><br> <%= person.residency_address + ', ' + person.residency_town + ', ' + person.residency_lga + ', ' + person.residency_state %></td>
+
+              <td scope="col" rowspan="4"><img class="table-thumbnail" src='<%= "/images/" + person.photo  %>'></td>
+              
+            </tr>
+            <tr>
+              <td scope="row"><strong>NIN:</strong> <%= person.nin %></td>
+              <td scope="row"><strong>First Name:</strong> <%= person.first_name %></td>
+            </tr>
+            <tr>
+              <td scope="row"><strong>Issue Date:</strong> <%= person.nin %></td>
+              <td scope="row"><strong>Middle Name:</strong> <%= person.middle_name %></td>
+            </tr>
+            <tr>
+              <td scope="row"></td>
+              <td scope="row"><strong>Gender:</strong> <%= person.gender.toUpperCase() %></td>
+            </tr>
+            <tr>
+              <td scope="row" colspan="4" class="text-center"><strong>Disclaimer:</strong> This is not the real NIMC NIN Slip</td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <button class="btn btn-info" id="print-btn">Proceed To Print Slip</button>
+        </div>
+    </div>
+  </div>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.getElementById('print-btn').onclick = () => window.print()
+  </script>
+</body>
+</html>

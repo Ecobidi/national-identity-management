@@ -1,0 +1,72 @@
+<%- include ('partials/top') %>
+  <div class="row space">
+    <div class="col-12 d-flex justify-content-between align-items-center underline pb-2">
+      <h3 class="title text-white">Enrolled Persons</h3>
+      <div>
+        <a href="/persons/new" class="btn btn-success">Enrol New Person</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row space">
+    <div class="col-12">
+      <div>
+        <% if (success_msg && success_msg.length > 0) { %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= success_msg %></strong> 
+          </div>
+          <script>
+            $(".alert").alert();
+          </script>
+        <% } %>
+      </div>
+      <form id="search-form" method="GET" action="/persons?" class="form-inline">
+        <div class="form-group mb-4">
+          <input required type="text" name="search" id="search-box" class="form-control" placeholder="Surname FirstName">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+      <h4 class="font-weight-light text-center text-white bg-primary p-2 m-0 table-top">List of Enrolled People</h4>
+      <table class="table table-bordered table-striped">
+        <thead class="text-white font-weight-bold">
+          <tr>
+            <td>Photo</td>
+            <td>Tracking ID</td>
+            <td>NIN</td>
+            <td>Surname</td>
+            <td>First Name</td>
+            <td>Middle Name</td>
+            <td>Gender</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <% persons.forEach((m) => { %>
+            <tr>
+              <td>
+                <img class="table-thumbnail" src='<%= "/images/" + m.photo  %>'>
+              </td>
+              <td><small><%= m._id %></small></td>
+              <td><small><%= m.nin %></small></td>
+              <td><small><%= m.surname %></small></td>
+              <td><small><%= m.first_name %></small></td>
+              <td><small><%= m.middle_name %></small></td>
+              <td><small><%= m.gender %></small></td>
+              <td>
+                <a href='<%= "/persons/view/" + m._id %>' class="mr-2 mb-2 btn btn-sm btn-success">View</i></a>
+                <a href='<%= "/persons/remove/" + m._id %>' class="mr-2 mb-2 btn btn-sm btn-danger">Remove</a>
+              </td>
+            </tr>
+          <% }) %>          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+</div>
+</div> 
+
+<%- include ('partials/bottom') %>

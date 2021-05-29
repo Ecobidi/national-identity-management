@@ -1,0 +1,357 @@
+<%-include ("partials/top") %>
+<div class="row space">
+  <div class="col-12 d-flex justify-content-between align-items-center underline pb-2 mb-4">
+    <h3 class="title text-white text-center">ENROLMENT FORM</h3>
+  </div>
+  <div class="col-12">
+    <form action='<%= "/persons/update/" + dao._id %>' method="POST">
+      <div>
+        <% if (error_msg && error_msg.length > 0) { %>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= error_msg %></strong> 
+          </div>
+          <script>
+            $(".alert").alert();
+          </script>
+        <% } %>
+      </div>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Your Names</legend>
+        <div class="form-group col-md-2">
+          <label>Title: <strong class="text-danger">*</strong></label>
+          <select name="title" required class="form-control">
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Master">Master</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms.">Ms.</option>
+          </select>
+        </div>
+        <div class="form-group col-md-5">
+          <label>Surname: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="surname" value='<%= dao.surname %>'>
+        </div>
+        <div class="form-group col-md-5">
+          <label>First Name: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="first_name" value='<%= dao.first_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Middle Name: </label>
+          <input required type="text" class="form-control" name="middle_name" value='<%= dao.middle_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Maiden Name: </label>
+          <input type="text" class="form-control" name="maiden_name" value='<%= dao.maiden_name %>'>
+        </div>
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Residency</legend>
+        <div class="form-group col-md-4">
+          <label>Address of Residency: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="residency_address" value='<%= dao.residency_address %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Town of Residency: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="residency_town" value='<%= dao.residency_town %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>L.G.A. of Residency: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="residency_lga" value='<%= dao.residency_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>State of Residency: <strong class="text-danger">*</strong></label>
+          <select name="residency_state" required class="form-control" value='<%= dao.residency_state %>'>
+            <option></option>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Time and Place of Birth</legend>
+
+        <div class="form-group col-md-4">
+          <label>Date of Birth: <strong class="text-danger">*</strong></label>
+          <input required type="date" class="form-control" name="birth_date" value='<%= dao.birth_date %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>State of Birth: <strong class="text-danger">*</strong></label>
+          <select name="birth_state" required class="form-control" value='<%= dao.birth_state %>'>
+            <option></option>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>L.G.A. of Birth: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="birth_lga" value='<%= dao.birth_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Town of Birth: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="birth_town" value='<%= dao.birth_town %>'>
+        </div>
+        
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Place of Origin</legend>
+
+        <div class="form-group col-md-4">
+          <label>State of Origin: <strong class="text-danger">*</strong></label>
+          <select name="origin_state" required class="form-control" value='<%= dao.origin_state %>'>
+            <option></option>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>L.G.A. of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="origin_lga" value='<%= dao.origin_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Town of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="origin_town" value='<%= dao.origin_town %>'>
+        </div>
+        
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Father's Place of Origin</legend>
+
+        <div class="form-group col-md-4">
+          <label>Father's State of Origin: <strong class="text-danger">*</strong></label>
+          <select name="father_origin_state" required class="form-control" value='<%= dao.father_origin_state %>'>
+            <option></option>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Father's L.G.A. of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="father_origin_lga" value='<%= dao.father_origin_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Father's Town of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="father_origin_town" value='<%= dao.father_origin_town %>'>
+        </div>
+        
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Mothers's Place of Origin</legend>
+
+        <div class="form-group col-md-4">
+          <label>Mothers's State of Origin: <strong class="text-danger">*</strong></label>
+          <select name="mother_origin_state" required class="form-control" value='<%= dao.mother_origin_state %>'>
+            <option></option>>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mothers's L.G.A. of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="mother_origin_lga" value='<%= dao.mother_origin_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mothers's Town of Origin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="mother_origin_town" value='<%= dao.mother_origin_town %>'>
+        </div>
+        
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Physical Features</legend>
+
+        <div class="form-group col-md-4">
+          <label>Gender: <strong class="text-danger">*</strong></label>
+          <select name="gender" required class="form-control" value='<%= dao.gender %>'>
+            <option></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Height (centimetres): <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="height" value='<%= dao.height %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Hair Colour: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="hair_colour" value='<%= dao.hair_colour %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Tribal Marks: <strong class="text-danger">*</strong></label>
+          <select name="tribal_mark" required class="form-control" value='<%= dao.tribal_mark %>'>
+            <option></option>
+            <option value="false">False</option>
+            <option value="true">True</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Physically Challenged: <strong class="text-danger">*</strong></label>
+          <select name="physically_challenged" required class="form-control" value='<%= dao.physically_challenged %>'>
+            <option></option>
+            <option value="false">False</option>
+            <option value="true">True</option>
+          </select>
+        </div>
+      </fieldset>
+      
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Your Other Details</legend>
+
+        <div class="form-group col-md-4">
+          <label>Mobile Phone: <strong class="text-danger">*</strong></label>
+          <input required type="tel" class="form-control" name="phone" value='<%= dao.phone %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Email: <strong class="text-danger">*</strong></label>
+          <input required type="email" class="form-control" name="email" value='<%= dao.email %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Native Language: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="native_language" value='<%= dao.native_language %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Others Languages Spoken: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="other_language" value='<%= dao.other_language %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Religion: <strong class="text-danger">*</strong></label>
+          <select name="religion" required class="form-control" value='<%= dao.religion %>'>
+            <option></option>
+            <option value="Christianity">Christianity</option>
+            <option value="Islam">Islam</option>
+            <option value="Traditional">Traditional</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Occupation/Profession: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="occupation" value='<%= dao.occupation %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Employment Status: <strong class="text-danger">*</strong></label>
+          <select name="employment_status" required class="form-control" value='<%= dao.employment_status %>'>
+            <option></option>
+            <option value="Employed">Employed</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Pensioner">Pensioner</option>
+            <option value="Self Employed">Self Employed</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Educational Level: <strong class="text-danger">*</strong></label>
+          <select name="educational_level" required class="form-control" value='<%= dao.educational_level %>'>
+            <option></option>
+            <option value="Certification">Certification</option>
+            <option value="None">None</option>
+            <option value="Post-Graduate">Post-Graduate</option>
+            <option value="Primary">Primary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="Tertiary">Tertiary</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Details of your Parents</legend>
+        <div class="form-group col-md-4">
+          <label>Father's Surname: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="father_surname" value='<%= dao.father_surname %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Father's First Name: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="father_first_name" value='<%= dao.father_first_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Father's Middle Name: </label>
+          <input required type="text" class="form-control" name="father_middle_name" value='<%= dao.father_middle_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mother's Surname: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="mother_surname" value='<%= dao.mother_surname %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mother's First Name: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="mother_first_name" value='<%= dao.mother_first_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mother's Middle Name: </label>
+          <input required type="text" class="form-control" name="mother_middle_name" value='<%= dao.mother_middle_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Mother's Maiden Name: </label>
+          <input required type="text" class="form-control" name="mother_maiden_name" value='<%= dao.mother_maiden_name %>'>
+        </div>
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Next of Kin Details</legend>
+        <div class="form-group col-md-4">
+          <label>Next of Kin's Surname: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_surname" value='<%= dao.next_of_kin_surname %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Next of Kin's First Name: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_first_name" value='<%= dao.next_of_kin_first_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Next of Kin's Middle Name: </label>
+          <input required type="text" class="form-control" name="next_of_kin_middle_name" value='<%= dao.next_of_kin_middle_name %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Relationship With Next of Kin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_relationship" value='<%= dao.next_of_kin_relationship %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Address of Next of Kin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_address" value='<%= dao.next_of_kin_address %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Town of Next of Kin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_town" value='<%= dao.next_of_kin_town %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>L.G.A. of Next of Kin: <strong class="text-danger">*</strong></label>
+          <input required type="text" class="form-control" name="next_of_kin_lga" value='<%= dao.next_of_kin_lga %>'>
+        </div>
+        <div class="form-group col-md-4">
+          <label>State of Next of Kin: <strong class="text-danger">*</strong></label>
+          <select name="next_of_kin_state" required class="form-control" value='<%= dao.next_of_kin_state %>'>
+            <option></option>
+            <% states.forEach(s => { %>
+              <option value='<%= s %>'><%= s %></option>
+            <% }) %>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="border p-2 rounded row text-white">
+        <legend>Passport Photo</legend>
+        <div class="form-group col-md-4">
+          <label>Photo: <strong class="text-danger">*</strong></label>
+          <input disabled required type="file" accept="image/jpg image/jpeg image/png" class="form-control">
+        </div>
+      </fieldset>
+    
+      <div class="form-group mt-4">
+        <button class="btn btn-success form-control" type="submit">Proceed To Enrol</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</main>
+
+<%-include ("partials/bottom") %>
